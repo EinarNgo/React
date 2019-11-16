@@ -4,16 +4,15 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 
-
 namespace kundeservice.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class sporsmalController : Controller
+    public class innsendtController : Controller
     {
         private readonly KundeserviceContext _context;
 
-        public sporsmalController(KundeserviceContext context)
+        public innsendtController(KundeserviceContext context)
         {
             _context = context;
         }
@@ -40,32 +39,6 @@ namespace kundeservice.Controllers
 
             return returList;
         }
-
-        
-        [HttpPost("[action]")]
-        public IActionResult PostSporsmal(dbinnsendt innsendt)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (innsendt != null)
-            {
-                var nyInnsendt = new dbinnsendt()
-                {
-                    ask = innsendt.ask,
-                    epost = innsendt.epost
-                };
-
-                _context.innsendt.Add(nyInnsendt);
-                _context.SaveChanges();
-                return StatusCode(200);
-            }
-            return StatusCode(500);
-
-        }
-        
 
 
     }

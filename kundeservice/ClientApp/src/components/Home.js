@@ -1,73 +1,70 @@
+
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 import "./Home.css";
 import axios from 'axios';
+import CommentListe from "./CommentListe"
+import { CommentReg } from './CommentReg';
 
 export class Home extends React.Component {
+
     constructor(props) {
         super(props);
+
         this.state = {
-            Comment: []
+            comments: [],
+            loading: false
         };
     }
 
+    
     componentDidMount() {
-        this.fetchSporsmal();
-    }
-
-    fetchSporsmal = () => {
-        axios.get('api/sporsmals/HentSporsmal')
-            .then(response => {
+        //get all the comments
+        fetch("api/sporsmal/HentSporsmal")
+            .then(res => res.json())
+            .then(res => {
                 this.setState({
-                    Comment: response.data
+                    comments: res,
+                    loading: false
                 });
-            }, error => {
-                console.log(error);
-                alert('Kunne ikke hente spørsmålene')
+            })
+            .catch(error => {
+                this.setState({ loading: false });
+                alert("Ingen kontakt med API")
             });
-    };
-
-
+    }
+    
 
     render() {
     return (
 
         <div className="App container bg-light shadow">
             <header className="App-header">
+                <p></p>
+                <p></p>
                 <h1 className="App-title">
                     FAQ
                 </h1>
-                <p>
-                    Frequence ask question
-                </p>
+                <p></p>
+                <p></p>
             </header>
 
             <div className="row">
                 <div className="col-4  pt-3 border-right">
                     <h6>Send inn spørsmål:</h6>
+                    <CommentReg addComment={this.addComment} />
                 </div>
-                <div className="col-8  pt-3 bg-white">
-
-                    <Accordion defaultActiveKey="0">
-                        <Card>
-                            <Accordion.Toggle as={Card.Header} eventKey="0">
-                                Test
-                            </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="0">
-                                <Card.Body>Hello! I'm the body78</Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
-                        <Card>
-                            <Accordion.Toggle as={Card.Header} eventKey="1">
-                                Click me!
-                            </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="1">
-                                <Card.Body>Hello! I'm another body</Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
-                    </Accordion>
+                <div className="col-8  pt-0 bg-black">
+                    <div className="row">
+                        <div className="col-12  pt-3 bg-white">
+                            <CommentListe
+                                loading={this.state.loading}
+                                comments={this.state.comments}
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,4 +72,3 @@ export class Home extends React.Component {
     );
   }
 }
-

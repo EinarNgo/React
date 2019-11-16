@@ -10,11 +10,9 @@ using JetBrains.Annotations;
 namespace kundeservice
 {
 
-    public class db : DbContext
+    public class db
     {
-        public db(DbContextOptions<db> options) : base(options)
-        {
-        }
+        
 
   
     }

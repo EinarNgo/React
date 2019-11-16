@@ -8,8 +8,10 @@ namespace kundeservice
     {
         [Key]
         public int ID { get; set; }
-        public string Navn { get; set; }
-        public string Spors { get; set; }
-        public string Svar { get; set; }
+        public string ask { get; set; }
+        public string ans { get; set; }
+        public string kat { get; set; }
+        public int pRat { get; set; }
+        public int nRat { get; set; }
     }
 }

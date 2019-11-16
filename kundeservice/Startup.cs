@@ -30,7 +30,7 @@ namespace kundeservice
             });
 
             services.AddDbContextPool<KundeserviceContext>(options =>
-                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("Kundeservice")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
