@@ -1,12 +1,12 @@
 ﻿import React from "react";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 
 
 export default function CommentBox(props) {
     const { id, ask, ans, kat, pRat, nRat } = props.comment;
 
+    
     return (
         <Accordion defaultActiveKey="1">
             <Card>
@@ -19,4 +19,5 @@ export default function CommentBox(props) {
             </Card>
         </Accordion>
     );
+    
 }

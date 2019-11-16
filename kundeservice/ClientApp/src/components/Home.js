@@ -1,10 +1,7 @@
 
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-import Card from 'react-bootstrap/Card';
-import Accordion from 'react-bootstrap/Accordion';
 import "./Home.css";
-import axios from 'axios';
 import CommentListe from "./CommentListe"
 import { CommentReg } from './CommentReg';
 
